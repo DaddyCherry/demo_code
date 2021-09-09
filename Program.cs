@@ -18,10 +18,10 @@ public class Program
 
         // AccountInfo info = await serviceClient.GetAccountInfoAsync();
 
-        await Console.Out.WriteLineAsync($"Connected to Azure Storage Account");
-        await Console.Out.WriteLineAsync($"Account name:\t{storageAccountName}");
-        await Console.Out.WriteLineAsync($"Account kind:\t{info?.AccountKind}");
-        await Console.Out.WriteLineAsync($"Account sku:\t{info?.SkuName}");
+        // await Console.Out.WriteLineAsync($"Connected to Azure Storage Account");
+        // await Console.Out.WriteLineAsync($"Account name:\t{storageAccountName}");
+        // await Console.Out.WriteLineAsync($"Account kind:\t{info?.AccountKind}");
+        // await Console.Out.WriteLineAsync($"Account sku:\t{info?.SkuName}");
 
         await EnumerateContainersAsync(serviceClient);
 
