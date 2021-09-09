@@ -23,7 +23,7 @@ public class Program
         await Console.Out.WriteLineAsync($"Account kind:\t{info?.AccountKind}");
         await Console.Out.WriteLineAsync($"Account sku:\t{info?.SkuName}");
 
-        await EnumerateContainersAsync(serviceClient);
+        // await EnumerateContainersAsync(serviceClient);
 
         string existingContainerName = "raster-graphics";
         await EnumerateBlobsAsync(serviceClient, existingContainerName);
