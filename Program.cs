@@ -1,49 +1,77 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Net.Http;
+﻿using Azure.Storage;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using System;
 using System.Threading.Tasks;
 
-namespace Api
+public class Program
 {
-    // public class Program
-    // {
-        // public static async Task Main(string[] args) =>
-            // await Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                })
-                .Build()
-                .RunAsync();
+    private const string blobServiceEndpoint = "<primary-blob-service-endpoint>";
+    private const string storageAccountName = "<storage-account-name>";
+    private const string storageAccountKey = "<key>";
+
+    public static async Task Main(string[] args)
+    {
+        StorageSharedKeyCredential accountCredentials = new StorageSharedKeyCredential(storageAccountName, storageAccountKey);
+
+        BlobServiceClient serviceClient = new BlobServiceClient(new Uri(blobServiceEndpoint), accountCredentials);
+
+        AccountInfo info = await serviceClient.GetAccountInfoAsync();
+
+        await Console.Out.WriteLineAsync($"Connected to Azure Storage Account");
+        await Console.Out.WriteLineAsync($"Account name:\t{storageAccountName}");
+        await Console.Out.WriteLineAsync($"Account kind:\t{info?.AccountKind}");
+        await Console.Out.WriteLineAsync($"Account sku:\t{info?.SkuName}");
+
+        await EnumerateContainersAsync(serviceClient);
+
+        string existingContainerName = "raster-graphics";
+        await EnumerateBlobsAsync(serviceClient, existingContainerName);
+    
+        string newContainerName = "vector-graphics";
+        BlobContainerClient containerClient = await GetContainerAsync(serviceClient, newContainerName);
+    
+        string uploadedBlobName = "graph.svg";
+        BlobClient blobClient = await GetBlobAsync(containerClient, uploadedBlobName);
+
+        await Console.Out.WriteLineAsync($"Blob Url:\t{blobClient.Uri}");
     }
 
-    public class Startup
+    private static async Task EnumerateContainersAsync(BlobServiceClient client)
     {
-        private IConfiguration _configuration { get; }
-
-        public Startup(IConfiguration configuration)
+        await foreach (BlobContainerItem container in client.GetBlobContainersAsync())
         {
-            _configuration = configuration;
+            await Console.Out.WriteLineAsync($"Container:\t{container.Name}");
         }
+    }
 
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddSingleton<Options>(_configuration.Get<Options>());
-            services.AddSingleton<HttpClient>(new HttpClient());
-            services.AddControllers();
+    private static async Task EnumerateBlobsAsync(BlobServiceClient client, string containerName)
+    {      
+        BlobContainerClient container = client.GetBlobContainerClient(containerName);
+        
+        await Console.Out.WriteLineAsync($"Searching:\t{container.Name}");
+        
+        await foreach (BlobItem blob in container.GetBlobsAsync())
+        {        
+             await Console.Out.WriteLineAsync($"Existing Blob:\t{blob.Name}");
         }
+    }
 
-        public void Configure(IApplicationBuilder app)
-        {
-            app.UseDeveloperExceptionPage();
-            app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
+    private static async Task<BlobContainerClient> GetContainerAsync(BlobServiceClient client, string containerName)
+    {      
+        BlobContainerClient container = client.GetBlobContainerClient(containerName);
+        
+        await container.CreateIfNotExistsAsync(PublicAccessType.Blob);
+        
+        await Console.Out.WriteLineAsync($"New Container:\t{container.Name}");
+        
+        return container;
+    }
+
+    private static async Task<BlobClient> GetBlobAsync(BlobContainerClient client, string blobName)
+    {      
+        BlobClient blob = client.GetBlobClient(blobName);
+        await Console.Out.WriteLineAsync($"Blob Found:\t{blob.Name}");
+        return blob;
     }
 }
