@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Api
 {
-    public class Program
-    {
-        public static async Task Main(string[] args) =>
+    // public class Program
+    // {
+        // public static async Task Main(string[] args) =>
             await Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
