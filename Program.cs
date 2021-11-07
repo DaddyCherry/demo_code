@@ -1,4 +1,4 @@
-﻿using Azure.Storage;
+using Azure.Storage;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using System;
@@ -13,6 +13,7 @@ public class Program
     public static async Task Main(string[] args)
     {
         StorageSharedKeyCredential accountCredentials = new StorageSharedKeyCredential(storageAccountName, storageAccountKey);
+        
 
         BlobServiceClient serviceClient = new BlobServiceClient(new Uri(blobServiceEndpoint), accountCredentials);
 
