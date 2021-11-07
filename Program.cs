@@ -11,6 +11,7 @@ public class Program
     private const string blobServiceEndpoint = "<primary-blob-service-endpoint>";
     private const string storageAccountName = "<storage-account-name>";
     private const string storageAccountKey = "<key>";
+123
 
 
     public static async Task Main(string[] args)
@@ -19,7 +20,7 @@ public class Program
         
 
         BlobServiceClient serviceClient = new BlobServiceClient(new Uri(blobServiceEndpoint), accountCredentials);
-
+        
         AccountInfo info = await serviceClient.GetAccountInfoAsync();
 
         await Console.Out.WriteLineAsync($"Connected to Azure Storage Account");
