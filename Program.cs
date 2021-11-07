@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 public class Program
 {
+		
+		
     private const string blobServiceEndpoint = "<primary-blob-service-endpoint>";
     private const string storageAccountName = "<storage-account-name>";
     private const string storageAccountKey = "<key>";
+
 
     public static async Task Main(string[] args)
     {
