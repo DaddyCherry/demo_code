@@ -12,7 +12,7 @@ public class Program
     private const string storageAccountName = "<storage-account-name>";
     private const string storageAccountKey = "<key>";
 123
-
+qwe
 
     public static async Task Main(string[] args)
     {
