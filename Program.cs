@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 fffff
 dafadfasdf
-adsfadfd
-dsafasdfa
 
 public class Program
 {
