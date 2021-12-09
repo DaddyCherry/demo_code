@@ -18,3 +18,6 @@ git branch
 git checkout <branchname>
 
 git branch -d newF
+
+
+
