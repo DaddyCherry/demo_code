@@ -19,7 +19,7 @@ git checkout <branchname>
 
 git branch -d newF
 
-git pull means fetch and merge...
+git pull means fetch and merge...!
 
 
 
