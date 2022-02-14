@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/masato/Desktop/git_work/demo_code/Web.csproj",
+  "FilePath": "/Users/masato/Desktop/work/demo_code/Web.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -16,7 +16,7 @@
   "RootNamespace": "Web",
   "Documents": [
     {
-      "FilePath": "/Users/masato/Desktop/git_work/demo_code/Index.cshtml",
+      "FilePath": "/Users/masato/Desktop/work/demo_code/Index.cshtml",
       "TargetPath": "Index.cshtml",
       "FileKind": "mvc"
     }
