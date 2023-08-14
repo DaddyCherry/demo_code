@@ -4,7 +4,7 @@ using Azure.Storage.Blobs.Models;
 using System;
 using System.Threading.Tasks;
 
-hogehoge
+hogehoge changed code.
 
 public class Program
 {
