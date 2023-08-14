@@ -5,24 +5,6 @@ using System;
 using System.Threading.Tasks;
 
 
-<<<<<<< HEAD
-fffff
-dafadfasdfasdfaf
-adsfasdfasdfaf
-sdfasldfkjas;ldkjfa;static
-asdlfjkadslfkajsd;flakj
-dfasdlkfjasldkfja;lskdjf
-asd;fkasjd;flkasjdlf;kjdsa
-a;lsdkfjal;skdfjal;saldkjflsakdfja;lskdfjas;lj
-
-
-saldkjflsakdfja
-
-=======
-hogehoge_changed
-
-
->>>>>>> b59cc91 (updated)
 
 public class Program
 {
