@@ -4,7 +4,9 @@ using Azure.Storage.Blobs.Models;
 using System;
 using System.Threading.Tasks;
 
-hogehoge changed code.
+
+new login feature implmented!
+
 
 public class Program
 {
