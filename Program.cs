@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 
 
-new login feature implmented!
+new logout feature implmented!!
 
 
 public class Program
